@@ -1,0 +1,74 @@
+
+.search-container {
+    transition: height 1s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: 150px;
+    max-width: 930px;
+    max-height: 650px;
+    background: rgba(245, 245, 245, 0.60);
+    border-radius: 10px;
+    border-color: rgba(255, 255, 255, 0.40);
+    border-width: 1px;
+}
+.input-container {
+    display: flex;
+    flex-direction: row;
+}
+.search-input {
+    background: transparent;
+    border: none;
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    position: relative;
+    margin-left: 0;
+    margin-right: auto; 
+    font-size:24px;
+    padding: 30px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.60);
+    height: 80px;
+}
+.search-input::placeholder {
+    color: #000;
+    opacity: 0.30;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+.search-icon {
+    margin-right: -100px;
+    height: 80px;
+}
+.result-manga {
+    position: relative;
+    max-height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+/* scrollbar search anime */
+/* width */
+.result-manga::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  .result-manga::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .result-manga::-webkit-scrollbar-thumb {
+    background: #FF16A2; 
+  }
+  
+  /* Handle on hover */
+  .result-manga::-webkit-scrollbar-thumb:hover {
+    background: #c3137d; 
+  }
