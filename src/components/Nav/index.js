@@ -1,22 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { Link } from 'react-router-dom';
-import './Home.css'
+import { Link, useLocation } from 'react-router-dom'
+import './index.css'
 
-
-import SearchBar from '../components/SearchBar'
-import { requestMangas } from '../apis/searchManga';
-import MangaSearch from '../components/MangaSearch';
-
-export default function Home() {
-    const [mangas, setMangas] = useState([])
-
-    const onSearchSubmit = useCallback(async term => {
-        const mangasArray = await requestMangas(term.toLowerCase())
-        setMangas(mangasArray)
-    })
-
-    const clearResults = useCallback(() => setMangas([]))
-
+const Nav = () => {
     return (
         <div className="main-container">
             <div className="nav">
@@ -34,9 +20,8 @@ export default function Home() {
                     </Link>
                 </div>
             </div>
-
-            <SearchBar onSearchSubmit={onSearchSubmit} clearResults={clearResults} mangas={mangas} />
-
         </div>
     )
 }
+
+export default Nav
