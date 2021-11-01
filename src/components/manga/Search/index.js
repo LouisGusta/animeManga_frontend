@@ -10,11 +10,15 @@ const MangaSearch = ({ manga }) => {
         <Link to={{
             pathname: `/manga/${name}`,
             state: {
+                id: manga.id,
                 title: manga.title,
                 coverImage: manga.coverImage,
                 format: manga.format,
                 status: manga.status,
-                bannerImage: manga.bannerImage
+                bannerImage: manga.bannerImage,
+                genres: manga.genres,
+                isAdult: manga.isAdult,
+                averageScore: manga.averageScore
             }
         }} >
             <div className='manga-container'>

@@ -2,7 +2,7 @@ import _ from 'lodash';
 import api from '../services/api'
 
 export const requestMangas = _.memoize(async title => {
-    const res = await api.get('/searchManga', {
+    const res = await api.get('/manga/search', {
         headers: {
             querysearch: title
         }

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { RotateCircleLoading } from 'react-loadingg';
 import './index.css'
 
-import Search from '../../assets/magnifier.svg'
-import MangaSearch from '../MangaSearch/';
+import Search from '../../../assets/magnifier.svg'
+import MangaSearch from '../Search/';
 
 const SearchBar = ({ onSearchSubmit, clearResults, mangas }) => {
     const [term, setTerm] = useState('')
