@@ -9,9 +9,9 @@
     margin-top: 150px;
     max-width: 930px;
     max-height: 650px;
-    background: rgba(245, 245, 245, 0.60);
+    background: rgba(var(--grey-white), .6);
     border-radius: 10px;
-    border-color: rgba(255, 255, 255, 0.40);
+    border-color: rgba(var(--white), .4);
     border-width: 1px;
 }
 .input-container {
@@ -30,15 +30,15 @@
     font-size:24px;
     padding: 30px;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--pattern-font);
     font-weight: 300;
-    color: rgba(0, 0, 0, 0.60);
+    color: rgba(var(--black), 0.60);
     height: 80px;
 }
 .search-input::placeholder {
-    color: #000;
+    color: rgba(var(--black), 1.0);
     opacity: 0.30;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--pattern-font);
     font-weight: 300;
 }
 .search-icon {
@@ -60,15 +60,15 @@
   
   /* Track */
   .result-manga::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: rgba(var(--white), 1.0); 
   }
    
   /* Handle */
   .result-manga::-webkit-scrollbar-thumb {
-    background: #FF16A2; 
+    background: rgba(var(--shadow-color), 1.0); 
   }
   
   /* Handle on hover */
   .result-manga::-webkit-scrollbar-thumb:hover {
-    background: #c3137d; 
+    background: rgba(var(--shadow-color), 1.0); 
   }

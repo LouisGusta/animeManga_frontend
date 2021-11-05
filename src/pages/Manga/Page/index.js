@@ -42,10 +42,8 @@ export default function Manga() {
     const classBlur = blur ? 'showBlur' : 'hiddenBlur'
     return (
         <>
-            <div className={'manga-dark-background ' + mangaFullDesc} onClick={showFullDesc}></div>
-            <Nav />
             <div className={'manga-full-desc ' + mangaFullDesc}>
-                <h2>{Object.keys(manga).length > 0 ? Parse(manga.description) : ''}</h2>
+                <h2>{Object.keys(manga).length > 0 && manga.description ? Parse(manga.description) : ''}</h2>
                 <div
                     style={{
                         display: 'flex',
@@ -64,7 +62,7 @@ export default function Manga() {
                             padding: '10px',
                             maxWidth: '90%',
                             maxHeight: '90%',
-                            fontFamily: `'Montserrat' sans-serif`,
+                            fontFamily: 'var(--pattern-font)',
                             fontStyle: 'normal',
                             fontWeight: '900',
                             fontSize: '25px',
@@ -72,41 +70,56 @@ export default function Manga() {
                             alignItems: 'center',
                             letterSpacing: '0.1em',
 
-                            color: '#FFFFFF',
+                            color: 'rgba(var(--white), 1.0)',
 
-                            textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+                            textShadow: '0px 4px 4px rgba(var(--white), 0.25)',
                         }}
                     >
                         CLOSE
                     </p>
                 </div>
             </div>
+            <div className={'dark-page ' + mangaFullDesc} onClick={showFullDesc}></div>
+
+            <Nav />
 
             <div className='manga-page-container' >
-                <div className={'manga-page-banner ' + classBlur}>
-                    <img
-                        src={Object.keys(manga).length > 0 ? manga.bannerImage : ''}
-                    />
+                <div className='manga-page-header-wrapper'>
+
+                    <div className={'manga-page-banner ' + classBlur} style={{ backgroundImage: `url(${Object.keys(manga).length > 0 ? manga.bannerImage : ''})` }}>
+                        <div class="shadow"></div>
+                    </div>
+
+                    <div className='manga-page-header'>
+                        <div className='manga-page-header-container'>
+                            <div className='manga-page-cover'>
+                                <div className='manga-page-cover-inner'>
+                                    <img
+                                        src={Object.keys(manga).length > 0 ? manga.coverImage.extraLarge : ''}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className='manga-page-content'>
+                                <div className='manga-page-wrapper'>
+                                    <div className='manga-page-title'>
+                                        <h2>{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</h2>
+                                    </div>
+                                    <div className='manga-page-open-room'>
+                                        <h2>CRIAR</h2>
+                                    </div>
+                                </div>
+
+
+                                <a onClick={showFullDesc}>
+                                    <p className='manga-page-description'>{Object.keys(manga).length > 0 && manga.description ? manga.description.length > 458 ? Parse(manga.description.substr(0, 458) + '...') : Parse(manga.description) : ''}</p>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div className='manga-page-infos'>
-                    <div
-                        className={'manga-page-card ' + classBlur}
-                    >
-                        <img
-                            src={Object.keys(manga).length > 0 ? manga.coverImage.extraLarge : ''}
-                        />
-                    </div>
-                    <div className='manga-page-title'>
-                        <h2>{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</h2>
-                        <h2>CRIAR</h2>
-                    </div>
-                </div>
-                <a onClick={showFullDesc}>
-                    <div className='manga-page-desc'>
-                        <h2>{Object.keys(manga).length > 0 ? manga.description.length > 458 ? Parse(manga.description.substr(0, 458) + '...') : Parse(manga.description) : ''}</h2>
-                    </div>
-                </a>
             </div>
 
 

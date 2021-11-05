@@ -1,9 +1,8 @@
 .nav {
-    background-color: #FF16A2;
-    opacity: 0.8;
+    background-color: rgba(var(--focus-nav), 1.0);
     max-width: 100%;
     max-height: 20%;
-    box-shadow: 2px 5px 5px #888888;
+    box-shadow: 0px 5px 5px rgba(var(--shadow-color), 1.0);
 
     display: flex;
     flex-direction: row;
@@ -13,8 +12,8 @@
 .nav div {
     height: 50px;
     text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--pattern-font);
     padding: 10px;
-    color: #fff;
+    color: rgba(var(--white), 1.0);
     user-select: none;
 }

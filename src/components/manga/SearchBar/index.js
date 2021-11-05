@@ -10,7 +10,6 @@ const SearchBar = ({ onSearchSubmit, clearResults, mangas }) => {
     const [debouncedTerm, setDebouncedTerm] = useState(term)
     const [expand, setExpand] = useState(false)
     const [height, setHeight] = useState('80px')
-    const [loading, setLoading] = useState(false)
     const node = useRef()
     const input = useRef()
 
