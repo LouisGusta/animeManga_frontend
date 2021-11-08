@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash'
 import api from '../services/api'
 
 export const requestMangas = _.memoize(async title => {
@@ -11,5 +11,5 @@ export const requestMangas = _.memoize(async title => {
 
     const mangasArray = await res.data
 
-    return mangasArray;
-});
+    return mangasArray
+})

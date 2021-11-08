@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import './index.css'
 
-import Nav from '../../../components/Nav/';
+import Nav from '../../../components/Nav/'
 import SearchBar from '../../../components/manga/SearchBar/'
-import { requestMangas } from '../../../apis/search';
+import { requestMangas } from '../../../apis/search'
 
 export default function Home() {
     const [mangas, setMangas] = useState([])

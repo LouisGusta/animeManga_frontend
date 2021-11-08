@@ -4,8 +4,8 @@ import Parse from 'html-react-parser'
 
 import './index.css'
 
-import Nav from '../../../components/Nav';
-import api from '../../../services/api';
+import Nav from '../../../components/Nav'
+import api from '../../../services/api'
 
 export default function Manga() {
     const location = useLocation()
@@ -24,7 +24,7 @@ export default function Manga() {
         }
 
         getMangaInfo()
-    }, [location.state])
+    }, [location.state.title.romaji])
 
     useEffect(() => {
         if (Object.keys(manga).length > 0) {
@@ -83,7 +83,7 @@ export default function Manga() {
 
             <Nav />
 
-            <div className='manga-page-container' >
+            <div className='manga-page-full-content' >
                 <div className='manga-page-header-wrapper'>
 
                     <div className={'manga-page-banner ' + classBlur} style={{ backgroundImage: `url(${Object.keys(manga).length > 0 ? manga.bannerImage : ''})` }}>
@@ -117,6 +117,47 @@ export default function Manga() {
                             </div>
                         </div>
 
+                    </div>
+                </div>
+
+                <div className='manga-page-content-container'>
+                    <div className='manga-page-sidebar' style={{ marginTop: 0 }}>
+                        <div className='manga-page-data'>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Formato</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.format : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Status</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.status : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Data de inicio</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.startDate.day + '/' + manga.startDate.month + '/' + manga.startDate.year : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Generos</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.genres.join(', ') : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Origem</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.countryOfOrigin : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Romaji</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Inglês</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.english : ''}</div>
+                            </div>
+                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div class="manga-page-type">Nativo</div>
+                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.native : ''}</div>
+                            </div>
+
+
+                        </div>
                     </div>
                 </div>
 
