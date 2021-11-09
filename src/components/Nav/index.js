@@ -1,9 +1,12 @@
-import React, { useCallback, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import './index.css'
 
-const Nav = () => {
+const Nav = (props) => {
+    const { user_id, avatar } = props
 
+    const redirect = user_id ? '/' : '/login'
+    console.log(props)
     return (
         <>
 
@@ -15,11 +18,16 @@ const Nav = () => {
                             {/* <img src={logo} alt="Manga"/> */}
                         </Link>
                     </div>
-                    <Link to='/login' style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to={redirect} style={{ textDecoration: 'none', color: 'inherit' }}>
                         <div className="login">
-                            <h2>
-                                LOGIN
-                            </h2>
+                            {
+                                user_id ?
+                                    <img src={avatar} alt='avatar/foto de perfil do usuario' />
+                                    :
+                                    <h2>
+                                        LOGIN
+                                    </h2>
+                            }
                         </div>
                     </Link>
 

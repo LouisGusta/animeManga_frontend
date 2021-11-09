@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
     margin-top: 0;
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -9,13 +9,13 @@
     height: 100%; 
     overflow: hidden;
 }
-.login-container {
+.register-container {
     background-color: rgba(var(--focus-background), 1.0);
     position: relative;
     margin-left: auto;
     margin-right: auto;
     width: 500px;    
-    height: 500px;
+    height: 600px;
     padding: 20px;
 
     display: grid; 
@@ -23,11 +23,11 @@
     grid-template-rows: .1fr .1fr .1fr .6fr; 
     gap: 25px; 
 }
-.login-container label {
+.register-container label {
     color: rgba(var(--white), .8);
 }
 
-.login-input, .pass-input {
+.user-register-input, .pass-register-input, .email-input {
     background: rgba(var(--grey-white), .6);
     border: 1px solid rgba(var(--shadow-color), .6);
     border-radius: 10px;
@@ -46,14 +46,14 @@
     color: rgba(var(--black), .6);
     height: 80px;
 }
-.login-input::placeholder, .pass-input::placeholder{
+.user-register-input::placeholder, .pass-register-input::placeholder, .email-input::placeholder{
     color: rgba(var(--black), 1.0);
     opacity: 0.30;
     font-family: var(--pattern-font);
     font-weight: 300;
 }
 
-.btn-login {
+.btn-register {
     background-color: rgba(var(--focus-nav), 1.0);
     color: rgba(var(--white), .8);
     text-decoration: none;
@@ -61,11 +61,12 @@
     cursor: pointer;
 }
 
-.btn-login:hover {
+.btn-register:hover {
     box-shadow: 2px 2px 2px rgba(var(--shadow-color), .8);
 }
 
-.call-register {
+
+.bar {
     height: 100%;
     width: 100%;
     display: grid; 
@@ -74,41 +75,4 @@
     align-items: end; 
     background-color: rgba(var(--focus-background), .8);
     box-shadow: 0 0 5px 1px rgba(var(--shadow-color), .8);
-}
- .call-register:hover {
-    box-shadow: 0 0 15px 1px rgba(var(--shadow-color), .8);
-}
-
-.call-register .komi-san-container:hover {
-    cursor: pointer;
-}
-
-.dialog {
-    background-image: url('../../assets/dialog-balloon.png');
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 200px;
-    width: 200px;
-    bottom: 400px;
-    right: 190px;
-}
-
-.komi-san-container {
-    display: grid;
-    justify-items: end; 
-    align-items: end; 
-
-    height: 100%;
-    width: 100%;
-}
-
-.komi-san {
-    bottom: 0;
-    background-image: url('../../assets/komi-san.png');
-    background-repeat: no-repeat;
-    height: 500px;
-    width: 500px;
-    transform: rotateY(180deg);
-
 }

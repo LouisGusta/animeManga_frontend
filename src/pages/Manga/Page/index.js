@@ -7,11 +7,27 @@ import './index.css'
 import Nav from '../../../components/Nav'
 import api from '../../../services/api'
 
-export default function Manga() {
+export default function Manga(props) {
     const location = useLocation()
     const [manga, setManga] = useState({})
     const [showModal, setShowModal] = useState(false)
     const [blur, setBlur] = useState(false)
+    const [profile, setProfile] = useState({})
+
+    useEffect(() => {
+        async function getProfile(id) {
+            const response = await api.get('/profile', {
+                headers: {
+                    user_id: id
+                }
+            })
+            setProfile(response.data)
+        }
+        if (localStorage.getItem('user_id')) {
+            const loggedInUser = localStorage.getItem('user_id')
+            getProfile(loggedInUser)
+        }
+    }, [props.location.state])
 
     useEffect(() => {
         async function getMangaInfo() {
@@ -81,7 +97,10 @@ export default function Manga() {
             </div>
             <div className={'dark-page ' + mangaFullDesc} onClick={showFullDesc}></div>
 
-            <Nav />
+            <Nav
+                avatar={profile ? profile.avatar : ''}
+                user_id={profile ? profile._id : ''}
+            />
 
             <div className='manga-page-full-content' >
                 <div className='manga-page-header-wrapper'>
