@@ -6,7 +6,6 @@ const Nav = (props) => {
     const { user_id, avatar } = props
 
     const redirect = user_id ? '/' : '/login'
-    console.log(props)
     return (
         <>
 

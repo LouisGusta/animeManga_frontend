@@ -13,6 +13,9 @@ export default function Manga(props) {
     const [showModal, setShowModal] = useState(false)
     const [blur, setBlur] = useState(false)
     const [profile, setProfile] = useState({})
+    const [showModalRoom, setShowModalRoom] = useState(false)
+    const [termPassRoom, setTermPassRoom] = useState('')
+    const [termCapacityNumber, setTermCapacityNumber] = useState('')
 
     useEffect(() => {
         async function getProfile(id) {
@@ -52,6 +55,14 @@ export default function Manga(props) {
 
     const showFullDesc = () => {
         setShowModal(!showModal)
+    }
+
+    const openModalRoom = () => {
+        setShowModalRoom(!showModalRoom)
+    }
+
+    const requestSession = () => {
+        console.log(termPassRoom + ' ' + termCapacityNumber)
     }
 
     const mangaFullDesc = showModal ? 'show' : 'hidden'
@@ -106,7 +117,7 @@ export default function Manga(props) {
                 <div className='manga-page-header-wrapper'>
 
                     <div className={'manga-page-banner ' + classBlur} style={{ backgroundImage: `url(${Object.keys(manga).length > 0 ? manga.bannerImage : ''})` }}>
-                        <div class="shadow"></div>
+                        <div className="shadow"></div>
                     </div>
 
                     <div className='manga-page-header'>
@@ -124,8 +135,43 @@ export default function Manga(props) {
                                     <div className='manga-page-title'>
                                         <h2>{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</h2>
                                     </div>
-                                    <div className='manga-page-open-room'>
-                                        <h2>CRIAR</h2>
+                                    <div className="dropdown-wrapper">
+                                        <div className='manga-page-open-room'  >
+                                            <h2 onClick={openModalRoom}>Criar</h2>
+                                            <div className='dropdown' style={{
+                                                height: showModalRoom ? '200px' : '0px',
+
+                                            }}>
+                                                <input
+                                                    className='pass-input-room'
+                                                    type='password' name='password'
+                                                    placeholder='Senha'
+                                                    onChange={event => setTermPassRoom(event.target.value)}
+                                                    style={{ margin: '20px 20px 0px 20px' }}
+                                                />
+                                                <div className='capacity' style={{ margin: '0px 20px 0px 20px' }}>
+                                                    <p>Capacidade</p>
+                                                    <input
+                                                        min="0" max="20" className='capacity-input-room'
+                                                        type="number" id="capacity" name="capacity"
+                                                        style={{
+                                                            width: '80px',
+                                                            marginLeft: '25px'
+                                                        }}
+                                                        onChange={event => setTermCapacityNumber(event.target.value)}
+                                                    />
+                                                </div>
+                                                <div style={{ width: '100%', margin: '0px 20px 0px 20px;' }}>
+                                                    <p
+                                                        onClick={() => requestSession()}
+                                                        style={{ float: 'right', right: '10px', position: 'relative' }}
+                                                    >
+                                                        Ler
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -142,37 +188,37 @@ export default function Manga(props) {
                 <div className='manga-page-content-container'>
                     <div className='manga-page-sidebar' style={{ marginTop: 0 }}>
                         <div className='manga-page-data'>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Formato</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.format : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Formato</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.format : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Status</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.status : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Status</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.status : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Data de inicio</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.startDate.day + '/' + manga.startDate.month + '/' + manga.startDate.year : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Data de inicio</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.startDate.day + '/' + manga.startDate.month + '/' + manga.startDate.year : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Generos</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.genres.join(', ') : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Generos</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.genres.join(', ') : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Origem</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.countryOfOrigin : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Origem</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.countryOfOrigin : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Romaji</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Romaji</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.romaji : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Inglês</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.english : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Inglês</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.english : ''}</div>
                             </div>
-                            <div class="manga-page-data-set" style={{ paddingBottom: '14px' }}>
-                                <div class="manga-page-type">Nativo</div>
-                                <div class="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.native : ''}</div>
+                            <div className="manga-page-data-set" style={{ paddingBottom: '14px' }}>
+                                <div className="manga-page-type">Nativo</div>
+                                <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.native : ''}</div>
                             </div>
 
 

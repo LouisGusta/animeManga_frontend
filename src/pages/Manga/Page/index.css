@@ -123,6 +123,83 @@
     }
 }
 
+/* modal to open a room manga */
+.dropdown-wrapper {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+.dropdown-wrapper .dropdown {
+    background-color: rgba(var(--focus-nav), 1.0);
+    color: rgba(var(--white), 1.0);
+    width: 300px;
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    font-family: var(--pattern-font);
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: height 1s;
+    overflow: auto;
+}
+
+/* scrollbar search anime */
+/* width */
+.dropdown-wrapper .dropdown::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  /* Track */
+  .dropdown-wrapper .dropdown::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  .dropdown-wrapper .dropdown::-webkit-scrollbar-thumb {
+    background: transparent; 
+  }
+  
+  /* Handle on hover */
+  .dropdown-wrapper .dropdown::-webkit-scrollbar-thumb:hover {
+    background: transparent; 
+  }
+
+.pass-input-room, .capacity-input-room {
+    background: rgba(var(--grey-white), .6);
+    border: 1px solid rgba(var(--shadow-color), .6);
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px rgba(var(--shadow-color), .6);
+    display: flex;
+    position: relative;
+    width: 250px;
+    margin-left: 0;
+    margin-right: auto; 
+    font-size:20px;
+    padding: 15px;
+    text-decoration: none;
+    font-family: var(--pattern-font);
+    font-weight: 300;
+    color: rgba(var(--black), .6);
+    height: 30px;
+}
+.pass-input-room::placeholder{
+    color: rgba(var(--black), 1.0);
+    opacity: 0.30;
+    font-family: var(--pattern-font);
+    font-weight: 300;
+}
+
+.capacity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    top: 20px;
+}
+
 /* modal to description of manga */
 .manga-full-desc {
     transition: height 1s;

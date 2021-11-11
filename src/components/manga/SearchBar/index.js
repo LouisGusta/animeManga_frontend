@@ -50,7 +50,6 @@ const SearchBar = ({ onSearchSubmit, clearResults, mangas }) => {
 
 
     const handleExpand = (e) => {
-        console.log(e)
         if (e != '') {
             setExpand(true)
         } else {
