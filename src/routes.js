@@ -6,6 +6,7 @@ import Register from './pages/Register/'
 
 import mangaHome from './pages/Manga/Home/'
 import mangaPage from './pages/Manga/Page/'
+import Room from './pages/Manga/Room/'
 
 export default function Routes() {
     return (
@@ -15,7 +16,9 @@ export default function Routes() {
 
             <Route path="/" exact component={mangaHome} />
             <Route path="/manga" exact component={mangaHome} />
-            <Route path="/manga/:name" component={mangaPage} />
+            <Route path="/manga/:name" exact component={mangaPage} />
+            <Route path="/manga/:room/:mangaName/" exact component={Room} />
+
         </BrowserRouter>
     )
 }

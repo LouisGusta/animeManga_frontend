@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Parse from 'html-react-parser'
+import socketIOClient from "socket.io-client";
+
 
 import './index.css'
 
@@ -15,7 +17,7 @@ export default function Manga(props) {
     const [profile, setProfile] = useState({})
     const [showModalRoom, setShowModalRoom] = useState(false)
     const [termPassRoom, setTermPassRoom] = useState('')
-    const [termCapacityNumber, setTermCapacityNumber] = useState('')
+    const [termCapacityNumber, setTermCapacityNumber] = useState(20)
 
     useEffect(() => {
         async function getProfile(id) {
@@ -61,9 +63,24 @@ export default function Manga(props) {
         setShowModalRoom(!showModalRoom)
     }
 
+
     const requestSession = () => {
-        console.log(termPassRoom + ' ' + termCapacityNumber)
+        const socket = socketIOClient(api.defaults.baseURL + '/room', { reconnect: true })
+        const nameManga = !(manga.title.romaji == '') ? manga.title.romaji : !(manga.title.english == '') ? manga.title.english : !(manga.title.native == '') ? manga.title.native = '' : ''
+        socket.emit('createRoom', { nameRoom: nameManga.replaceAll(/[.,()]/gm, '').replaceAll(' ', '-'), passwordRoom: termPassRoom, limitRoom: termCapacityNumber, idUser: profile._id })
+        socket.on('returnRoom', (data) => {
+            console.log(data)
+            props.history.push({
+                pathname: '/manga/' + data.idRoom + '/' + nameManga.replaceAll(/[.,()]/gm, '').replaceAll(' ', '-'),
+                state: {
+                    idRoom: data.idRoom,
+                    idSocket: data.idSocket
+                }
+            })
+        })
     }
+
+
 
     const mangaFullDesc = showModal ? 'show' : 'hidden'
     const classBlur = blur ? 'showBlur' : 'hiddenBlur'
@@ -140,20 +157,21 @@ export default function Manga(props) {
                                             <h2 onClick={openModalRoom}>Criar</h2>
                                             <div className='dropdown' style={{
                                                 height: showModalRoom ? '200px' : '0px',
-
                                             }}>
                                                 <input
                                                     className='pass-input-room'
                                                     type='password' name='password'
                                                     placeholder='Senha'
+                                                    maxLength="10"
                                                     onChange={event => setTermPassRoom(event.target.value)}
                                                     style={{ margin: '20px 20px 0px 20px' }}
                                                 />
                                                 <div className='capacity' style={{ margin: '0px 20px 0px 20px' }}>
                                                     <p>Capacidade</p>
                                                     <input
-                                                        min="0" max="20" className='capacity-input-room'
+                                                        min={1} max={20} className='capacity-input-room'
                                                         type="number" id="capacity" name="capacity"
+                                                        value={termCapacityNumber > 20 ? 20 : termCapacityNumber < 1 ? 1 : termCapacityNumber}
                                                         style={{
                                                             width: '80px',
                                                             marginLeft: '25px'
@@ -169,7 +187,6 @@ export default function Manga(props) {
                                                         Ler
                                                     </p>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -220,8 +237,6 @@ export default function Manga(props) {
                                 <div className="manga-page-type">Nativo</div>
                                 <div className="manga-page-value">{Object.keys(manga).length > 0 ? manga.title.native : ''}</div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
